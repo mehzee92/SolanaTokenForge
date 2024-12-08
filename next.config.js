@@ -2,12 +2,14 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     appDir: false,
-    esmExternals: false
+    esmExternals: true
   },
   transpilePackages: [
     "@solana/spl-token",
     "@solana/web3.js",
-    "@metaplex-foundation/mpl-token-metadata"
+    "@metaplex-foundation/mpl-token-metadata",
+    "@solana/spl-token-group",
+    "@solana/codecs-data-structures"
   ],
   images: {
     domains: [
