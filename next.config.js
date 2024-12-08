@@ -11,8 +11,7 @@ const nextConfig = {
   transpilePackages: [
     "@solana/spl-token",
     "@solana/web3.js",
-    "@metaplex-foundation/mpl-token-metadata",
-    "@solana/spl-token-group"
+    "@metaplex-foundation/mpl-token-metadata"
   ],
   images: {
     domains: [
@@ -47,13 +46,8 @@ const nextConfig = {
         fullySpecified: false,
       },
     });
-    config.resolve.extensionAlias = {
-      '.js': ['.js', '.ts', '.tsx'],
-      '.mjs': ['.mjs', '.mts'],
-      '.cjs': ['.cjs', '.cts']
-    };
     return config;
   }
 };
 
-export default nextConfig; 
+module.exports = nextConfig; 
