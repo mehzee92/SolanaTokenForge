@@ -6,7 +6,7 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     appDir: false,
-    esmExternals: 'loose'
+    esmExternals: false
   },
   transpilePackages: [
     "@solana/spl-token",
