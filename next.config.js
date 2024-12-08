@@ -1,15 +1,18 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
     appDir: false,
+    esmExternals: 'loose'
   },
   transpilePackages: [
     "@solana/spl-token",
-    "@solana/spl-token-group",
     "@solana/web3.js",
     "@metaplex-foundation/mpl-token-metadata",
-    "@solana/codecs-data-structures"
+    "@solana/spl-token-group"
   ],
   images: {
     domains: [
@@ -37,8 +40,20 @@ const nextConfig = {
       zlib: require.resolve("browserify-zlib"),
       vm: require.resolve("vm-browserify"),
     };
+    config.module.rules.push({
+      test: /\.m?js$/,
+      type: "javascript/auto",
+      resolve: {
+        fullySpecified: false,
+      },
+    });
+    config.resolve.extensionAlias = {
+      '.js': ['.js', '.ts', '.tsx'],
+      '.mjs': ['.mjs', '.mts'],
+      '.cjs': ['.cjs', '.cts']
+    };
     return config;
   }
 };
 
-module.exports = nextConfig; 
+export default nextConfig; 
