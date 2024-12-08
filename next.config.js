@@ -8,7 +8,8 @@ const nextConfig = {
     "@solana/spl-token",
     "@solana/spl-token-group",
     "@solana/web3.js",
-    "@metaplex-foundation/mpl-token-metadata"
+    "@metaplex-foundation/mpl-token-metadata",
+    "@solana/codecs-data-structures"
   ],
   images: {
     domains: [
