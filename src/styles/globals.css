@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* example: override wallet button style */
+.wallet-adapter-button:not([disabled]):hover {
+  background-color: #707070;
+}
+
+.typewriter-container {
+  width: auto; /* Adjust as needed, e.g., 80% of the viewport width */
+  margin: 0 auto; /* Center the container horizontally */
+  text-align: center; /* Center-align the text */
+}
+
+.typewriter {
+  display: inline; /* Ensure it only takes as much width as needed */
+  overflow: hidden;
+  white-space: pre-wrap; /* Prevent line breaks within the container */
+  border-right: 0.15em solid white; /* White cursor color */
+  font-family: monospace;
+  font-size: 2em; /* Increase the font size */
+  color: white; /* White text color */
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  box-sizing: border-box; /* Include border in the width */
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white; /* White cursor blink color */
+  }
+}
+
+
+.inputbox{
+  width: 500px; /* Set a fixed width */
+  max-width: 100%; /* Ensure it doesn't exceed the container's width */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  margin: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px; /* Adjust width of scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5); /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Background of the scrollbar track */
+}
+
+/* for the about.css */
+.fullSize {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensure the image is behind other content */
+}
+
+.textOverlay {
+  position: absolute;
+  bottom: 90px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  font-family: Arial, sans-serif; /* Adjust the font as needed */
+}
+
+.headingText {
+  font-size: 60px; /* Adjust the font size as needed */
+  font-weight: bold;
+  margin-bottom: 30px; /* Space between the lines of text */
+}
+
+.subHeadingText {
+  font-size: 40px; /* Adjust the font size as needed */
+  margin-bottom: 80px; /* Space between text and arrow */
+  width: auto;
+}
+
+.bouncingArrow {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+  margin: 0 auto;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-50px);
+  }
+  60% {
+    transform: translateY(-25px);
+  }
+}
+
+.inputTypewriter{
+  margin-top: 30px !important;
+}
+
+@layer utilities {
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .min-h-content {
+    min-height: calc(100vh - 4rem);
+  }
+}

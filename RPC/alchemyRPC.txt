@@ -1,0 +1,107 @@
+Solana API Quickstart
+Quickstart guide for building on Solana
+
+Don’t have an API key?
+Sign up to start building on Solana
+
+Get started for free
+Getting Started Instructions
+1. Choose a package manager (npm or yarn)
+For this guide, we will be using npm or yarn as our package manager to install either alchemy-sdk or any other packages.
+
+npm
+To get started with npm, follow the documentation to install Node.js and npm for your operating system: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
+yarn
+To get started with yarn, follow these steps: https://classic.yarnpkg.com/lang/en/docs/install
+
+2. Set up your project (npm or yarn)
+Shell (npm)
+Shell (yarn)
+
+mkdir alchemy-solana-api
+cd alchemy-solana-api
+npm init --yes
+3. Install Solana Web3.js Library
+Run the following command to install the Solana Web3.js library with npm or yarn.
+
+npm
+yarn
+
+npm install --save @solana/web3.js
+4. Make your first request
+You are all set now to use Solana API and make your first request. For instance, lets make a request to get latest slot. Create an index.js file and paste the following code snippet into the file.
+
+index.js
+
+const solanaWeb3 = require("@solana/web3.js");
+
+const main = async () => {
+  rpc = "https://solana-mainnet.g.alchemy.com/v2/<Your-Alchemy-API-Key>"; // RPC URL for connecting with a Solana node
+  connection = new solanaWeb3.Connection(rpc, "confirmed"); // confirming the connection
+
+  let slot = await connection.getSlot(); // getting the most recent slot number
+  console.log("The latest slot number is", slot); // logging the most recent slot number
+};
+
+main();
+5. Run script
+To run the above node script, use cmd node index.js, and you should see the output.
+
+shell
+
+The latest slot number is 164150510
+Leverage Alchemy's AccountsDB Infrastructure for Solana RPC Requests!
+The most expensive Solana RPC requests involve account scans, such as getProgramAccounts and getLargestTokenAccounts. These methods are incredibly useful but non-performant methods since they induce a heavy RPC load on Solana validator nodes, often resulting in a 5XX response due to timeout or a response with high latency.
+
+Alchemy has built out core infrastructure that sits atop our Solana validator nodes to support these methods at scale, through what we call the AccountsDB Infrastructure. This infrastructure allows for faster, scalable, and more reliable responses to these methods by paginating the response with a pageKey. You could then loop through your that same request with at scan and aggregate the full response from our validator nodes.
+
+You can see pageKey is now an optional parameter in each account-scanning method in our Solana docs, and you may also include an order optional parameter that would sort the accounts in the response by their pubkey field.
+
+Here's an example with getProgramAccounts:
+
+TypeScript
+
+const axios = require("axios");
+
+function getProgramAccountsExample() {
+ let gPAExampleRequest = {
+   "method": "alchemy_getProgramAccounts",
+   "params": [
+     "ZETAxsqBRek56DhiGXrn75yj2NHU3aYUnxvHXpkf3aD",
+     {
+       "encoding": "base64",
+       "withContext": true,
+       "order": "desc"
+     }
+   ],
+   "id": 0,
+   "jsonrpc": "2.0"
+ }
+ let programAccounts = []
+
+ const alchemyRPCUrl = "https://solana-mainnet.g.alchemy.com/v2/<YOUR-API-KEY>"
+ try {
+   let response = await axios.post(url, gPAExampleRequest);
+   let responseData = response.data["result"]
+   
+   // continue aggregating if there's a new pageKey present in the latest response
+   while (responseData["pageKey"]) {
+     programAccounts = programAccounts.concat(responseData["value"]);
+     
+     // place the pagekey within the optional config object
+     // (you may need to create that config object if you didn't have it originally)
+     gPAExampleRequest["params"][1]["pageKey"] = responseData["pageKey"];
+     
+     // make another call to getProgramAccounts with the pageKey
+     response = await axios.post(url, gPAExampleRequest);
+     responseData = response.data["result"]
+   }
+
+    programAccounts = programAccounts.concat(responseData["value"]);
+    return programAccounts;
+  } catch (err) {
+    console.error(`Error in Response, Data is: ${err.data}`);
+    return [];
+  }
+}

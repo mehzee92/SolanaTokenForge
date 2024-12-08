@@ -1,0 +1,129 @@
+Solana RPC
+With QuickNode, you get access to our global network which always routes your API requests to the nearest available location, ensuring low latency and fastest speeds.
+QuickNode Now Accepts Solana Payments 🚀
+You can now pay for a QuickNode plan using USDC on Solana. As the first multi-chain provider to accept Solana payments, we're streamlining the process for developers — whether you're creating a new account or managing an existing one. Learn more about paying with Solana here.
+
+Overview
+At QuickNode, we run Solana RPC endpoints. In aggregate, we serve hundreds of billions of requests every month. To make it easier for developers to integrate with QuickNode, we've created this documentation that shows how to call RPC methods using cURL, JavaScript, Python, Ruby. QuickNode-supported Solana APIs include:
+
+Solana JSON-RPC API
+
+HTTP Methods
+Websocket Stable Methods
+Websocket Unstable Methods
+Marketplace Add-Ons
+
+Lil' JIT - JITO Bundles and transactions
+Solana DAS (Digital Asset Standard) API
+Priority Fee API
+Metis: Jupiter V6 Swap API
+Note:
+The QuickNode Solana documentation constantly evolves as the chain undergoes upgrades and changes. We highly recommend cross-referencing with the Solana Documentation for the latest updates.
+
+Solana Network Support
+Network	WSS	HTTPS
+DEVNET	✅	✅
+TESTNET	✅	✅
+MAINNET	✅	✅
+Making Solana API Requests
+In this documentation, you will see example requests made with various programming languages for each supported Solana method. This section will explain how to execute each one of them on your machine.
+
+cURL
+Most *nix based systems have cURL support out of the box. cURL is a command line tool and library for transferring data with URLs. Check if you have it by running the following:
+
+curl -h
+
+Solana.py
+Solana.py is a Python library for interacting with Solana. It is important to note that Solana.py is community-maintained and updates may not be available at the same time as the Solana Web3 API. If you'd like to use this library, please be sure to install it and its dependencies like so:
+
+pip install solana cachetools
+
+Rust (HTTP)
+Rust is a systems programming language designed for performance, memory safety, and concurrency. It provides a modern alternative to languages like C and C++. To install Rust on your system, you can visit the official Rust website for installation instructions.
+
+Once Rust is installed, configure your project's dependencies by updating the Cargo.toml file with the following:
+
+[dependencies]
+reqwest = "0.11"
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"] }
+
+To execute your Rust code, use the command:
+
+cargo run
+
+JsonRpcClient
+Generate JSON-RPC requests and parse responses in Python. Install it using the following command:
+
+pip install jsonrpcclient
+
+Requests
+Requests is an elegant and simple HTTP library for Python, built for human beings. Install it using the following command:
+
+python -m pip install requests
+
+Solana/Web3.js
+Solana/Web3.js is a Json RPC library on JavaScript that is updated by the Solana Labs team. You can install it with the following command:
+
+npm install @solana/web3.js
+
+Solana/Web3.js 2.0
+Solana Web3.js 2.0 is a significant update to the JavaScript library for interacting with the Solana blockchain. It introduces a new API design focusing on composability, modularity, and improved developer experience. You can install it with the following command:
+
+npm install @solana/web3.js@2.0.0-rc.0
+
+
+Note
+To know more about Solana Web3.js 2.0 you can checkout our blog here
+
+Axios
+Axios is a promise-based HTTP Client for node.js and the browser. On the server-side it uses the native node.js http module, while on the client (browser) it uses XMLHttpRequests. Install it using the following command:
+
+npm install axios
+
+WebSocket cat (wscat)
+WebSocket cat (wscat) is a simple tool for connecting to WebSocket APIs in your terminal. Install it using the following command:
+
+npm install -g wscat
+
+API Credits
+Usage in our pricing plans is measured in API Credits. To learn more about the API Credits for Solana, please visit this page.
+
+WebSocket Limits
+WebSocket responses are capped at a certain limit, which is subject to change. In cases where responses are potentially large, it is recommended to use a POST request. If the response size exceeds the limit, the associated error code will be -32616.
+
+Billing Credits for WebSocket Methods
+Billing credits for WebSocket methods are calculated based on the number of responses received, not the number of subscriptions made. For instance, if you open an accountChange subscription and receive 100 responses, your account will be charged 5,000 credits (calculated as 50 credits per response multiplied by 100 responses).
+
+Endpoint Authentication Options
+
+Note:
+Please note that setting JWT (JSON Web Tokens), configuring all whitelist options, and changing any rate limits beyond credits per second are only available to users on the Growth plan and higher. Users on the Free or Starter plans can only change their requests per second rate limit or add, use, and delete an authentication token. Visit our pricing page for more information.
+
+Token Authentication
+By default, all endpoints created on QuickNode are protected by a token in the URL which looks something like this:
+
+
+http://sample-endpoint-name.network.quiknode.pro/token-goes-here/
+Approved Referrer List
+For endpoints on the shared network, you are able to add a list of approved referrers. This requires any HTTP request to send a REFERRER header or any WebSocket request to send an ORIGIN header populated with one of the referrers you entered into our user panel.
+
+Disabling Token Authentication
+You can also disable the token authentication completely in your security settings for a given endpoint. This will allow anyone to make requests to the endpoint without the token.
+
+JWT (JSON Web Tokens)
+For additional security, you can also enable JWT for each of your deployed endpoints. JWT allows for stateless authentication between you and your endpoint. Learn how to use JWT with QuickNode in this step-by-step guide.
+
+Multiple Authentication Tokens
+Create multiple authentication tokens for each of your deployed endpoints. This allows you to revoke any tokens that may be comprised, without needing to restart your non-compromised endpoint.
+
+To roll an individual authentication token, create an additional token and then delete the previous token. Learn more about multiple authentication tokens in this QuickNode guide.
+
+Secure Your QuickNode Solana Endpoint
+Enhance the security of your QuickNode RPC endpoints using the Endpoint Armor add-on. This add-on provides a secure URL for safer public and front-end usage, allowing you to control access, set rate limits, and restrict methods for heightened security and streamlined management. You can find more information about Endpoint Armor on this page.
+
+We ❤️ Feedback!
+If you have any feedback or questions about this documentation, let us know. We'd love to hear from you!
+
+Last updated on Dec 6, 2024
+Share this doc
