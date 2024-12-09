@@ -66,12 +66,55 @@ const About: FC = () => {
 
       {/* Content Overlay */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
-        <h1 className="text-7xl font-bold mb-6">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00FFA3] via-[#9945FF] to-[#DC1FFF] animate-gradient">
-            TokenForge
-          </span>
-          <span className="text-4xl text-gray-400 ml-2">on Solana</span>
-        </h1>
+        <div className="mb-6">
+          <svg width="400" height="90" viewBox="0 0 283 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#00FFA3">
+                  <animate 
+                    attributeName="stop-color" 
+                    values="#00FFA3;#DC1FFF;#9945FF;#00FFA3" 
+                    dur="8s" 
+                    repeatCount="indefinite" 
+                  />
+                </stop>
+                <stop offset="100%" stopColor="#DC1FFF">
+                  <animate 
+                    attributeName="stop-color" 
+                    values="#DC1FFF;#00FFA3;#9945FF;#DC1FFF" 
+                    dur="8s" 
+                    repeatCount="indefinite" 
+                  />
+                </stop>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <path d="M20 32C20 14.3269 34.3269 0 52 0H231C248.673 0 263 14.3269 263 32C263 49.6731 248.673 64 231 64H52C34.3269 64 20 49.6731 20 32Z" fill="url(#hero-gradient)" filter="url(#glow)">
+              <animate
+                attributeName="opacity"
+                values="1;0.8;1"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+            </path>
+            <text x="141.5" y="38" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">
+              TokenForge
+              <animate
+                attributeName="fill-opacity"
+                values="1;0.7;1"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+            </text>
+          </svg>
+        </div>
+        <span className="text-4xl text-gray-400 ml-2">on Solana</span>
         <p className="text-2xl text-gray-300 mb-12 max-w-2xl animate-fade-in">
           Create and Deploy Solana Tokens with AI-Powered Tools
         </p>

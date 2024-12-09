@@ -14,13 +14,11 @@ require('../styles/globals.css');
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <Head children={
-        <>
-          <title>TokenForge</title>
-          <meta name="description" content="Create and deploy Solana tokens with AI-powered tools" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </>
-      } />
+      <Head>
+        <title>TokenForge | Create Solana Tokens</title>
+        <link rel="icon" href="/tokenforge.svg" />
+        <meta name="description" content="Create and Deploy Solana Tokens with AI-Powered Tools" />
+      </Head>
 
       <AccessibilityProvider>
         <ContextProvider>

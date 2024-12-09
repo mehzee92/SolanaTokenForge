@@ -4,6 +4,13 @@ const nextConfig = {
     appDir: false,
     esmExternals: true
   },
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+  typescript: {
+    ignoreBuildErrors: true
+  },
   transpilePackages: [
     "@solana/spl-token",
     "@solana/web3.js",
@@ -45,7 +52,13 @@ const nextConfig = {
       },
     });
     return config;
-  }
+  },
+  async redirects() {
+    return [];
+  },
+  async rewrites() {
+    return [];
+  },
 };
 
 module.exports = nextConfig;

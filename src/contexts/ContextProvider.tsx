@@ -1,20 +1,22 @@
 import React, { FC, ReactNode, useCallback, useMemo, useState, useEffect } from 'react';
 import { WalletAdapterNetwork, WalletError } from '@solana/wallet-adapter-base';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletModalProvider as ReactUIWalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import {
-    PhantomWalletAdapter,
-    SolflareWalletAdapter,
-    SolletExtensionWalletAdapter,
-    SolletWalletAdapter,
-    TorusWalletAdapter,
-} from '@solana/wallet-adapter-wallets';
+import dynamic from 'next/dynamic';
 import { clusterApiUrl } from '@solana/web3.js';
 import { AutoConnectProvider, useAutoConnect } from './AutoConnectProvider';
 import { notify } from "../utils/notifications";
 import { getWorkingConnection, getRPCEndpoint } from '../utils/rpc';
 import { createContext } from 'react';
 import { Connection } from '@solana/web3.js';
+
+// Import wallet adapter CSS
+require('@solana/wallet-adapter-react-ui/styles.css');
+
+// Dynamic import of WalletModalProvider to prevent SSR issues
+const WalletModalProvider = dynamic(
+    () => import('@solana/wallet-adapter-react-ui').then(mod => mod.WalletModalProvider),
+    { ssr: false }
+);
 
 export const NetworkContext = createContext({
     network: WalletAdapterNetwork.Devnet,
@@ -58,14 +60,9 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
         }
     };
 
+    // Empty wallets array since we're using wallet-standard
     const wallets = useMemo(
-        () => [
-            new PhantomWalletAdapter(),
-            new SolflareWalletAdapter(),
-            new SolletWalletAdapter({ network }),
-            new SolletExtensionWalletAdapter({ network }),
-            new TorusWalletAdapter(),
-        ],
+        () => [],
         [network]
     );
 
@@ -87,7 +84,7 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
         }}>
             <ConnectionProvider endpoint={getRPCEndpoint(network)}>
                 <WalletProvider wallets={wallets} onError={onError} autoConnect={autoConnect}>
-                    <ReactUIWalletModalProvider>{children}</ReactUIWalletModalProvider>
+                    <WalletModalProvider>{children}</WalletModalProvider>
                 </WalletProvider>
             </ConnectionProvider>
         </NetworkContext.Provider>

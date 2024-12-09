@@ -691,14 +691,37 @@ export const CreateToken: FC = () => {
     <div className="max-w-9xl mx-auto px-8">
       {/* Title Section */}
       <div className="mb-8 pl-8">
-        <h2 className="text-3xl font-bold">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00FFA3] via-[#9945FF] to-[#DC1FFF]">
-            Create Token
-          </span>
-        </h2>
-        <p className="text-gray-400 mt-2">
-          Create your custom token with advanced features and AI-generated logo
-        </p>
+        <svg width="200" height="45" viewBox="0 0 283 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="create-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#00FFA3">
+                <animate 
+                  attributeName="stop-color" 
+                  values="#00FFA3;#9945FF;#00FFA3" 
+                  dur="4s" 
+                  repeatCount="indefinite" 
+                />
+              </stop>
+              <stop offset="100%" stopColor="#DC1FFF">
+                <animate 
+                  attributeName="stop-color" 
+                  values="#DC1FFF;#00FFA3;#DC1FFF" 
+                  dur="4s" 
+                  repeatCount="indefinite" 
+                />
+              </stop>
+            </linearGradient>
+          </defs>
+          <path d="M20 32C20 14.3269 34.3269 0 52 0H231C248.673 0 263 14.3269 263 32C263 49.6731 248.673 64 231 64H52C34.3269 64 20 49.6731 20 32Z" fill="url(#create-gradient)">
+            <animate
+              attributeName="filter"
+              values="brightness(1);brightness(1.2);brightness(1)"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </path>
+          <text x="141.5" y="38" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">TokenForge</text>
+        </svg>
       </div>
 
       {/* Main Grid Container */}

@@ -8,6 +8,7 @@ import { BackgroundEffects } from '../components/common/BackgroundEffects';
 import { NetworkContext } from '../contexts/ContextProvider';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { getWorkingConnection } from '../utils/rpc';
+import { useRouter } from 'next/router';
 
 const steps = [
   {
@@ -138,6 +139,13 @@ const Home: NextPage = () => {
   const { network } = useContext(NetworkContext);
   const wallet = useWallet();
   const { connection } = useConnection();
+  const router = useRouter();
+
+  const handleNavigation = (path: string) => {
+    if (router.pathname !== path) {
+      router.push(path);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#0F1424] relative overflow-hidden">

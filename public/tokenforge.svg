@@ -1,0 +1,10 @@
+<svg width="283" height="64" viewBox="0 0 283 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00FFA3" />
+      <stop offset="100%" style="stop-color:#DC1FFF" />
+    </linearGradient>
+  </defs>
+  <path d="M20 32C20 14.3269 34.3269 0 52 0H231C248.673 0 263 14.3269 263 32C263 49.6731 248.673 64 231 64H52C34.3269 64 20 49.6731 20 32Z" fill="url(#gradient)"/>
+  <text x="141.5" y="38" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">TokenForge</text>
+</svg> 
